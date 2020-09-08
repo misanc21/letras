@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Formulario = () => {
+const Formulario = ( { setBusquedaLetra } ) => {
+
+    const [busqueda, setBusqueda] = useState({
+        artista:'',
+        cancion:''
+    })
+    const [error, setError] = useState(false)
+    
+    const actualizarState = e => {
+        setBusqueda({
+            ...busqueda,
+            [e.target.name] :e.target.value
+        })
+    }
+
+    const buscarInfo = e => {
+        e.preventDefault();
+        if (artista.trim() === '' || cancion.trim() === '') {
+            setError(true)
+            return
+        }
+        setError(false)
+        setBusquedaLetra(busqueda)
+
+    }
+
+    const {artista, cancion} = busqueda
     return (
         <div className="bg-info">
             <div className="container">
                 <div className="row">
                     <form
                         className="col card text-white bg-transparent mb-5 pt-5 pb-2"
+                        onSubmit={buscarInfo}
                     >
                         <fieldset>
                             <legend className="text-center">
@@ -21,6 +48,8 @@ const Formulario = () => {
                                             className="form-control"
                                             name="artista"
                                             placeholder="Nombre del artista"
+                                            onChange = {actualizarState}
+                                            value = {artista} 
                                         />
                                     </div>
                                 </div>
@@ -32,6 +61,8 @@ const Formulario = () => {
                                             className="form-control"
                                             name="cancion"
                                             placeholder="Nombre de canción"
+                                            onChange = {actualizarState}
+                                            value = {cancion} 
                                         />
                                     </div>
                                 </div>
@@ -42,6 +73,7 @@ const Formulario = () => {
                                         </button>
                                     </div>
                                 </div>
+                                {error ? <p className="col-12 alert alert-danger text-center p-2">Todos los campos son obligatorios</p> : null}
                             </div>
                         </fieldset>
                     </form>
