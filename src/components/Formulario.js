@@ -42,7 +42,7 @@ const Formulario = ( { setBusquedaLetra } ) => {
                             <div className="row">
                                 <div className="col col-12 col-md-5">
                                     <div className="form-group">
-                                        <label>Artista</label>
+                                        <label for="artista">Artista</label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -55,7 +55,7 @@ const Formulario = ( { setBusquedaLetra } ) => {
                                 </div>
                                 <div className="col col-12 col-md-5">
                                     <div className="form-group">
-                                        <label>Cancion</label>
+                                        <label for="cancion">Cancion</label>
                                         <input
                                             type="text"
                                             className="form-control"
